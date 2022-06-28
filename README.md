@@ -1,2 +1,4 @@
 # selfhosting
-resources for self-hosting services using docker and ansible
+resources for self-hosting services using VMs, ontainers, and ansible
+
+
