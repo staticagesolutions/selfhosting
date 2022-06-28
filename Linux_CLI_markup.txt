@@ -1,0 +1,206 @@
+====== Syscoin V4.3 Linux headless CLI setup ======
+
+//Requires debian/ubuntu//
+
+== Tested on Debian 11 ==
+
+\\
+\\
+
+===== Setting up Syscoin 4.3 ====
+
+\\
+
+==== Install Syscoin from source ====
+
+=== YOU MUST BE ROOT (su) FOR THIS TO WORK, DOUBLE CHECK ALL COMMANDS!!! ===
+
+''su \\
+cd /root/ \\
+wget https://github.com/syscoin/syscoin/releases/download/v4.3.0/syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
+tar xf syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
+install -m 0755 -o root -g root -t /usr/local/bin syscoin-4.3.0/bin/* \\
+rm -r syscoin-4.3.0rc2 \\
+mkdir ~/.syscoin'' \\
+
+=== We need to create the config file ===
+
+''nano ~/.syscoin/syscoin.conf''
+
+Paste in the following:
+
+''testnet=1 \\
+[test] \\
+rpcuser=user \\
+rpcpassword=password \\
+listen=1 \\
+daemon=1 \\
+server=1 \\
+assetindex=1 \\
+port=18369 \\
+rpcport=18370 \\
+rpcallowip=127.0.0.1 \\
+addnode=54.190.239.153 \\ 
+addnode=52.40.171.92'' \\
+
+=== Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit ===
+
+\\
+\\
+
+==== Run Syscoin daemon ==== 
+
+''syscoind''
+
+=== Wait a few minutes for banlist, block index, and geth to load ===
+
+\\
+
+==== Check status of blocks ====
+
+''syscoin-cli getblockchaininfo''
+
+=== You should see something like this ===
+
+''{ \\
+"chain": "test", \\
+"blocks": 546407, \\
+"headers": 993902, \\
+"bestblockhash": "000000253025b381b9ca91d297e5dcb7c61f9218cdba72306876a533ce216848", \\
+  "difficulty": 0.02220736497678113, \\
+  "time": 1614867115, \\
+  "mediantime": 1614866765, \\
+  "verificationprogress": 0.444060966252973, \\
+  "initialblockdownload": true, \\
+  "chainwork": "000000000000000000000000000000000000000000000000000005215dea990a", \\
+  "size_on_disk": 272448733, \\
+  "pruned": false, \\
+  "softforks": { \\
+    "bip34": { \\
+      "type": "buried", \\
+      "active": true, \\
+      "height": 1 \\
+    }, \\
+    "bip66": { \\ 
+      "type": "buried", \\
+      "active": true, \\
+      "height": 1 \\
+    }, \\
+    "bip65": { \\
+      "type": "buried", \\
+      "active": true, \\
+      "height": 1 \\
+    }, \\
+    "csv": { \\
+      "type": "buried", \\
+      "active": true, \\
+      "height": 1 \\
+    }, \\
+    "segwit": { \\
+      "type": "buried", \\
+      "active": true, \\
+      "height": 0 \\
+    }, \\
+    "taproot": { \\
+      "type": "bip9", \\
+      "bip9": { \\
+        "status": "active", \\
+        "start_time": -1, \\
+        "timeout": 9223372036854775807, \\
+        "since": 0, \\
+        "min_activation_height": 0 \\
+      }, \\
+      "height": 0, \\
+      "active": true \\
+    } \\
+  }, \\
+  "warnings": "" \\
+}'' \\
+
+\\ 
+\\
+
+===== Install sentinel =====
+
+
+==== Run these commands to install from github ====
+
+''apt update \\
+apt -y install git python3 virtualenv \\
+git clone https://github.com/syscoin/sentinel.git \\
+cd sentinel \\
+git checkout dev-4.x \\
+virtualenv -p $(which python3) ./venv \\
+./venv/bin/pip install -r requirements.txt'' \\
+
+
+=== Edit the sentinel.conf ===
+
+''nano sentinel.conf'' \\
+
+=== If there is a # next to ===
+
+''syscoin_conf='' 
+
+=== then remove it and change it to ===
+
+''syscoin_conf=/root/.syscoin/syscoin.conf'' 
+
+=== Put a # next to == 
+
+''network=mainnet''
+ 
+=== Remove the # next to ==
+
+''network=testnet''
+
+=== This enables testnet version of sentinel === 
+
+=== Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit ===
+
+== Should look like this ==
+
+{{:screenshot_from_2022-06-26_23-51-29.png?400|}}
+\\
+\\
+
+==== Create a crontab entry to wake sentinel every 5 minutes ====
+
+=== open crontab ===
+
+''crontab -e''
+
+=== If promopted to choose an editor select option 1 nano ===
+
+=== Paste this below the commented out lines ===
+
+''* * * * * cd /root/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log''
+
+=== Automatically start syscoind on boot by adding this line after ===
+
+''@reboot /usr/local/bin/syscoind -daemon >/dev/null 2>&1''
+
+=== Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit ===
+
+\\
+\\
+==== Reboot to make sure the daemon starts at boot ====
+
+''shutdown -r now''
+
+=== Once powered back on check daemon is running, it may take a minute to load ===
+
+''syscoin-cli getblockchaininfo''
+
+\\
+\\ 
+===== Finished! =====
+
+[[setup_masternode|Next, install masternode
+]]
+
+
+
+
+
+
