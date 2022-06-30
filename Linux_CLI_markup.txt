@@ -40,6 +40,7 @@ assetindex=1 \\
 port=18369 \\
 rpcport=18370 \\
 rpcallowip=127.0.0.1 \\
+gethtestnet=1 \\
 addnode=54.190.239.153 \\ 
 addnode=52.40.171.92'' \\
 
