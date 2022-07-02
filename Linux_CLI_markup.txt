@@ -15,9 +15,7 @@
 
 === YOU MUST BE ROOT (su) FOR THIS TO WORK, DOUBLE CHECK ALL COMMANDS!!! ===
 
-''su \\
-cd /root/ \\
-wget https://github.com/syscoin/syscoin/releases/download/v4.3.0/syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
+''wget https://github.com/syscoin/syscoin/releases/download/v4.3.0/syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
 tar xf syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
 install -m 0755 -o root -g root -t /usr/local/bin syscoin-4.3.0/bin/* \\
 rm -r syscoin-4.3.0rc2 \\
@@ -121,51 +119,10 @@ addnode=52.40.171.92'' \\
 \\ 
 \\
 
-===== Install sentinel =====
 
 
-==== Run these commands to install from github ====
 
-''apt update \\
-apt -y install git python3 virtualenv \\
-git clone https://github.com/syscoin/sentinel.git \\
-cd sentinel \\
-git checkout dev-4.x \\
-virtualenv -p $(which python3) ./venv \\
-./venv/bin/pip install -r requirements.txt'' \\
-
-
-=== Edit the sentinel.conf ===
-
-''nano sentinel.conf'' \\
-
-=== If there is a # next to ===
-
-''syscoin_conf='' 
-
-=== then remove it and change it to ===
-
-''syscoin_conf=/root/.syscoin/syscoin.conf'' 
-
-=== Put a # next to == 
-
-''network=mainnet''
- 
-=== Remove the # next to ==
-
-''network=testnet''
-
-=== This enables testnet version of sentinel === 
-
-=== Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit ===
-
-== Should look like this ==
-
-{{:screenshot_from_2022-06-26_23-51-29.png?400|}}
-\\
-\\
-
-==== Create a crontab entry to wake sentinel every 5 minutes ====
+==== Create a crontab entry to start syscoind at boot ====
 
 === open crontab ===
 
@@ -173,11 +130,7 @@ virtualenv -p $(which python3) ./venv \\
 
 === If promopted to choose an editor select option 1 nano ===
 
-=== Paste this below the commented out lines ===
-
-''* * * * * cd /root/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log''
-
-=== Automatically start syscoind on boot by adding this line after ===
+=== Paste this below the commented out lines, automatically starts syscoind on boot ===
 
 ''@reboot /usr/local/bin/syscoind -daemon >/dev/null 2>&1''
 
@@ -199,9 +152,3 @@ virtualenv -p $(which python3) ./venv \\
 
 [[setup_masternode|Next, install masternode
 ]]
-
-
-
-
-
-
