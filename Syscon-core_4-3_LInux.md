@@ -30,21 +30,21 @@ nano ~/.syscoin/syscoin.conf
 
 <h3>Paste in the following</h3>
 
-<code>
-testnet=1 \\
-[test] \\
-rpcuser=user \\
-rpcpassword=password \\
-listen=1 \\
-daemon=1 \\
-server=1 \\
-assetindex=1 \\
-port=18369 \\
-rpcport=18370 \\
-rpcallowip=127.0.0.1 \\
-gethtestnet=1 \\
-addnode=54.190.239.153 \\ 
-addnode=52.40.171.92'' \\
+<code><br>
+testnet=1<br>
+[test]<br>
+rpcuser=user<br>
+rpcpassword=password<br>
+listen=1<br>
+daemon=1<br>
+server=1<br>
+assetindex=1<br>
+port=18369<br>
+rpcport=18370<br>
+rpcallowip=127.0.0.1<br>
+gethtestnet=1<br>
+addnode=54.190.239.153<br> 
+addnode=52.40.171.92
 </code>
 
 <h4>Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit</h4>
