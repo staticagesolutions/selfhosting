@@ -13,14 +13,26 @@
 <h3>Download and unpack Syscoin Core</h3>
 
 <code>
-wget https://github.com/syscoin/syscoin/releases/download/v4.3.0/syscoin-4.3.0-x86_64-linux-gnu.tar.gz 
-tar xf syscoin-4.3.0-x86_64-linux-gnu.tar.gz \\
-install -m 0755 -o root -g root -t /usr/local/bin syscoin-4.3.0/bin/* \\
-rm -r syscoin-4.3.0rc2 \\
-mkdir ~/.syscoin'' \\
+wget https://github.com/syscoin/syscoin/releases/download/v4.3.0/syscoin-4.3.0-x86_64-linux-gnu.tar.gz   
+</code>  
+<br/>
+<code>
+tar xf syscoin-4.3.0-x86_64-linux-gnu.tar.gz  
+</code>
+<br/>
+<code>
+install -m 0755 -o root -g root -t /usr/local/bin syscoin-4.3.0/bin/*  
+</code>
+<br/>
+<code>
+rm -r syscoin-4.3.0rc2  
+</code>
+<br/>
+<code>
+mkdir ~/.syscoin  
 </code>
 
-<br>
+<br/>
 
 <h3>Create the config file</h3>
 
@@ -30,22 +42,20 @@ nano ~/.syscoin/syscoin.conf
 
 <h3>Paste in the following</h3>
 
-<code><br>
-testnet=1<br>
-[test]<br>
-rpcuser=user<br>
-rpcpassword=password<br>
-listen=1<br>
-daemon=1<br>
-server=1<br>
-assetindex=1<br>
-port=18369<br>
-rpcport=18370<br>
-rpcallowip=127.0.0.1<br>
-gethtestnet=1<br>
-addnode=54.190.239.153<br> 
-addnode=52.40.171.92
-</code>
+testnet=1  
+[test]  
+rpcuser=user  
+rpcpassword=password  
+listen=1  
+daemon=1  
+server=1  
+assetindex=1  
+port=18369  
+rpcport=18370  
+rpcallowip=127.0.0.1  
+gethtestnet=1  
+addnode=54.190.239.153  
+addnode=52.40.171.92  
 
 <h4>Press Ctrl + O then enter to save the file and Ctrl + X and enter to exit</h4>
 
@@ -69,32 +79,32 @@ syscoin-cli getblockchaininfo
 </code>
 
 <h4>You should see something like this</h4>
-<code>
+
 {
-  "chain": "test",
-  "blocks": 547051,
-  "headers": 1008033,
-  "bestblockhash": "0000000c0fe984bcb7cc35caa97e0eed6f322a77a65249b983f7d977872a8acd",
-  "difficulty": 0.01452472661000394,
-  "time": 1614913087,
-  "mediantime": 1614912654,
-  "verificationprogress": 0.4321373241464761,
-  "initialblockdownload": true,
+  "chain": "test"    
+  "blocks": 547051  
+  "headers": 1008033  
+  "bestblockhash": "0000000c0fe984bcb7cc35caa97e0eed6f322a77a65249b983f7d977872a8acd    
+  "difficulty": 0.01452472661000394  
+  "time": 1614913087, 
+  "mediantime": 1614912654,  
+  "verificationprogress": 0.4321373241464761,  
+  "initialblockdownload": true  ,
   "chainwork": "0000000000000000000000000000000000000000000000000000052c70e058ce",
-  "size_on_disk": 288879863,
-  "pruned": false,
-  "softforks": {
-    "bip34": {
-      "type": "buried",
-      "active": true,
-      "height": 1
-    },
-    "bip66": {
-      "type": "buried",
-      "active": true,
-      "height": 1
-    },
-    "bip65": {
+  "size_on_disk": 288879863,  
+  "pruned": false,  
+  "softforks": {  
+    "bip34": {  
+      "type": "buried",    
+      "active": true,  
+      "height": 1  
+    },  
+    "bip66": {    
+      "type": "buried",  
+      "active": true,  
+      "height": 1  
+    },  
+    "bip65": {  
       "type": "buried",
       "active": true,
       "height": 1
@@ -123,8 +133,7 @@ syscoin-cli getblockchaininfo
     }
   },
   "warnings": ""
-}
-</code>
+}  
 
 <br>
 
