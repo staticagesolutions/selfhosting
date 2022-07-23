@@ -73,7 +73,7 @@ Ctrl + o to save then ctrl + x to go back to CLI
     
     nano sentinel.conf    
     
-Uncomment the line that begins syscoin_conf= and change it to /root/ instead of /home/YOURUSERNAME/  
+Uncomment the line that begins syscoin_conf= and change it's target to /root/ instead of /home/YOURUSERNAME/  
 
 Also comment out mainnet and remove # from testnet. This is how it should look:                               
 
