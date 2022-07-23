@@ -108,6 +108,6 @@ Then add this line that will start the Syscoin-core daemon at reboot
     
 Exit and prepare to intialize the Masternode
 
-<h2>Setup Masternode</h2>
+<h2>Setup masternode in part 2</h2>
 
 
