@@ -83,7 +83,7 @@ Also comment out mainnet and remove # from testnet. This is how it should look:
     # default is the same as Syscoin  
     syscoin_conf=/root/.syscoin/syscoin.conf  
 
-    # valid options are mainnet, testnet (default=mainnet)  
+    # valid options are mainnet, testnet (default=mainnet)    
     #network=mainnet  
     network=testnet  
 
@@ -93,9 +93,12 @@ Also comment out mainnet and remove # from testnet. This is how it should look:
     
 <h3>Finishing Sentinel configuration</h3>  
 
-Open crontab next but set nano as default editor first 
+You need to set your EDITOR= env variable to nano first  
 
-    
+    export EDITOR="/usr/bin/nano"  
+
+Open crontab next but set nano as default editor first  
+
     crontab -e
     
 Set a cron job to wake the system every 5 minutes, this goes after the last line
@@ -108,6 +111,6 @@ Then add this line that will start the Syscoin-core daemon at reboot
     
 Exit and prepare to intialize the Masternode
 
-<h2>Setup masternode in part 2</h2>
+<h2>Register the node in part 2</h2>
 
 
